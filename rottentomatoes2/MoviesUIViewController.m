@@ -8,6 +8,7 @@
 
 #import "MoviesUIViewController.h"
 #import "MovieCell.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface MoviesUIViewController ()
 
@@ -70,6 +71,10 @@
     NSDictionary *movie = self.movies[indexPath.row];
     cell.movieTitleLabel.text = movie[@"title"];
     cell.movieSynopsisLabel.text = movie[@"synopsis"];
+    
+    NSString *imageUrl = movie[@"posters"][@"thumbnail"];
+    NSURL *url = [NSURL URLWithString:imageUrl];
+    [cell.posterView setImageWithURL:url];
     
     return cell;
 }
